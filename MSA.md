@@ -80,10 +80,96 @@ yaml : ---표시는 하나의 문단
 
 
 
+
+
 http localhost:8081/orders productId=100 qty=1
 http localhost:8081/orders 
 http DELETE localhost:8081/orders/1
 http localhost:8081/orders
 http localhost:8082/cancellations
 http localhost:8083/mypages
+
+tar xvf order.tar
+unzip order.zip
+
+
+
+# -------------3일차--------------------
+
+# docker 
+
+이미지 : 찍어내는 틀
+컨테이너 : 찍어낸 내용물
+
+
+`docker` : 
+
+- docker image pull nginx
+- docker images
+- docker run --name my-nginx -d -p 80:80 nginx
+- docker container ls
+
+컨테이너 명령어
+1. ㅇdocker container stop `타깃`
+2. docker container start `타깃`
+3. 
+
+
+## Docker 생성 순서
+
+1. Docker 폴더생성
+2. index.html 생성
+3. Dockerfile 파일생성
+  - 내부에 FROM ghcr.io/gkedu/nginx
+           COPY index.html /usr/share/nginx/html/
+4. docker build -t wodonggun/my-nginx:v1
+5. docker login
+6. docker push wodonggun/my-nginx:v1
+7. docker run --name=my-first-container -d -p 8080:80 wodonggun/my-nginx:v1                컨테이너는 기본포트가 8080이고, 8080으로 들어와서 내부의80번 포트를 포워딩해줌.
+
+
+## 자바파일 생성
+1. 해당 자바폴더로 이동하여 mvn package   (order 폴더에서 진행함)
+2. 
+
+
+
+
+# --------MSA Cloud 시험---------
+
+MSA는 
+1. 중복을 허용함
+2. event driven
+3. 스파게티 네트워크 = 동기화(원래는 다르지만 예시로) 
+4. 비동기화가 MSA다.
+5. CQRS 패턴
+6. MSA 
+
+
+
+프론트엔드 => 서버사이드 렌더링 = 다 조합하고 빌드해서 배포함.
+MSA는 클라이언트사이드 렌더링을 진행함.
+
+게이트웨이 = 모든 서비스의 IP와 주소 정보 dns를 등록하지 않음. 
+DDD(도메인 드리븐 ) = 
+
+
+DB의 직관성,신뢰성 등 필요한 프로젝트는 하면 안됨.
+
+카프카는 메시지큐로서 씀.(퍼포먼스가 좋음 = 다이렉트 호출만큼)
+
+MSA의 처음 허들이 있음.
+고려할게 많고, 
+
+
+주문과 상품 = 메인도메인 = 코어시스템(중요한 시스템)
+서포팅도메인 = 상품후기,배송시스템 등 부가적인거(서포티브)
+제너럴 도메인 = 물류시스템, 결제서비스 등 우리가 굳이 개발하지않고, 갔다 쓸 수 있는것들.
+
+
+ACL = 모노리식 시스템을 MSA로 변경해갈때, 접점에 있는 영역 (코어 도메인과 ACL은 어울리지 않음)
+
+
+# 
+
 

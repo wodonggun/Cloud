@@ -177,5 +177,104 @@ CD = 쿠버네티스가 종착역
 
 
 
+skcc10@gkn2019hotmail.onmicrosoft.com
+Skccadmin!234
+
+
+-리소스그룹 : skcc10-rsrcgrp
+-클러스트이름 : skcc10-aks
+- 컨테이너 레지스트리 : skcc10
+- 이미지 Prefix =  skcc10.azurecr.io
+
+
+az aks update -n skcc10-aks -g skcc10-rsrcgrp --attach-acr skcc10
+
+kubectl get all
+
+az aks get-credentials --resource-group skcc10-rsrcgrp --name skcc10-aks
+
+kubectl create deployment my-nginx --image=wodonggun/my-nginx:v1
+
+kubectl get all
+
+kubectl expose deployment my-nginx --type=LoadBalancer --port=80   (L4 라우터의 포트임)
+
+kubectl get all
+
+kubectl delete service/my-nginx
+
+http://52.141.56.224 (Externel IP 입력)
+
+
+kubectl delete deploy.service --all   (전체서비스 종료)
+
+
+
+deploy monolith --image=skcc10.azurecer.io/monolith:$(Build.BuildId)
+
+
+
+
+
+
+copy files to
+publish build artfiacts
+
+copy를 Maven.pom 밑으로
+Publish Artifact:drop을 copy밑으로
+Copy클릭 
+교재 63 페이지, Copy Files Task 속성정보
+Source Folder    : $(system.defaultworkingdirectory)
+Contents    : azure/*
+Target Folder : $(build.artifactstagingdirectory)
+
+
+Publish Artfact:drop폴더에 contents에 azure/*로 설정.
+
+
+
+그다음
+CI파이프라인 이름을 
+Relaese에 CD 이름도 같게 만듬(CI를 CD로만)
+
+kubectl 추가.
+kubectl Create수정 -> Commnad를 apply로 수정, Arguments 내용 삭제, Use Configuration 체크.
+
+
+
+
+
+
+RElaese -> All pipelines(그림) -> stage1글씨아래클릭 -> Cubectl Add -> 
+kubectl Create : Command를 apply로, Arguments삭제, Use Configuration type 체크, File path옆에 ...클릭 -> skcc10의 drop의 azure의 deploy.yml클릭
+
+두번째 Kubectl클릭 : kubernate service connection을 aks로 
+command를 apply로, user configuration체크 
+File path를 Drop,azure,service.yaml를 클릭.
+
+Agent job+클릭 -> bash클릭 -> Display name=Bash Script, Type=inline
+
+kubectl apply에서  File path에서 $(System.Default부터 monolith-CI까지 복사. 
+
+sed -i “s/latest/$(Build.BuildId)/g” $(System.DefaultWorkingDirectory)/"여기에복사붙여"/drop/azure/deploy.yaml
+
+Bash Script -> Script에 위에내용 붙여넣기. 
+
+monolith readme수정.
+
+
+
+
+
+--------이론
+
+1. 
+
+
+블루그린 - 묶어서 라우팅을 바꾸는거 
+CI/CD = 지속적인 통합, 지속적인 배포
+
+
+
 
 

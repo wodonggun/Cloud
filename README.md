@@ -1,5 +1,5 @@
 # Cloud
-수정 TEST
+수정 TEST  
 CapEx = 자본 기술 
 OpEx = 운영 지출
 

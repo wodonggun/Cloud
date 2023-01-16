@@ -1,6 +1,24 @@
 # Cloud
 
 
+## MSA란?
+
+- MSA(Micro Service Architecture) : 
+
+Event Store = 메세지큐
+
+- DDD(Domain Driven Design) : 도메인주도설계
+- Event Storming : DDD를 쉽게 하는 방법론(고객이 주도적으로 비지니스를 설계)
+
+
+
+## Event Storming
+
+![image](https://user-images.githubusercontent.com/35188271/212582810-7bae5405-6e3e-456c-9331-f79d03b3714e.png)
+
+
+
+
 
 # 1일차
 

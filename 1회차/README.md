@@ -17,6 +17,23 @@ Event Store = 메세지큐
 ![image](https://user-images.githubusercontent.com/35188271/212582810-7bae5405-6e3e-456c-9331-f79d03b3714e.png)
 
 
+![image](https://user-images.githubusercontent.com/35188271/212588067-913f6f75-dcd6-4274-a2c4-947a060a27a2.png)
+
+
+- 컨텍스트 매핑 : 배송팀에서 작성한 Policy를 자신의 컨텍스트로 이동시킴
+![image](https://user-images.githubusercontent.com/35188271/212588698-9273c549-1a1a-4b9c-a250-729ff794d547.png)  
+
+- 사용자는 Order서비스에서 Cancel을 요청하고, Delivery서비스에서는 시스템이 자동으로 Cancel시킴
+![image](https://user-images.githubusercontent.com/35188271/212589468-7877b52b-0f5a-4194-9240-473f9a790850.png)
+- Event와 Command는 동기화 형태이지만, Policy로 변경되어 비동기로 연결성을 끊음.
+![image](https://user-images.githubusercontent.com/35188271/212590479-62a8aa1e-90f2-486d-9e8b-474949dde02c.png)
+
+- 필요한 속성 정의
+![image](https://user-images.githubusercontent.com/35188271/212600313-399efdf4-d80a-418c-9647-34ce851e386c.png)
+![image](https://user-images.githubusercontent.com/35188271/212600374-77558bba-16b6-41fd-8118-050b062a104b.png)
+
+- 사용자가 command시점에서는 동기호출로 현재 배송상태를 봐야함(배송중이면 취소 불가능하게)
+![image](https://user-images.githubusercontent.com/35188271/212602196-5f09937c-9661-49f4-b890-c7a13f3bc357.png)
 
 
 
@@ -30,6 +47,8 @@ Event Store = 메세지큐
 ![image](https://user-images.githubusercontent.com/35188271/208811477-f4379185-b81c-4317-805c-e1c2ca573507.png)
 
 ![image](https://user-images.githubusercontent.com/35188271/209038040-3404852f-3631-4ffa-8825-45a3298f450f.png)
+
+
 
 
 

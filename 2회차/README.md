@@ -38,7 +38,8 @@ Binder = ORM Mapper
 - `Service Registry` : API Gateway가 클러스터 내의 인스턴스를 찾아가는 앱(Eureka, kube-DNS)
 ![image](https://user-images.githubusercontent.com/35188271/212788448-09c6ea9f-c543-4856-a3dd-901b8f0bebdb.png)
 
-- `CDC(Change Data Capturing)` : 카프카에서 지원하는 DB의 변화를 모니터링하고, 데이터 동기화를 위해 이벤트(알림)을 발행함.  
+- `CDC(Change Data Capture)` : 카프카에서 지원하는 DB의 변화를 모니터링하고, 데이터 동기화를 위해 이벤트(알림)을 발행함.  
+기존 레거시에서 DB에 접속해서 변경사항을 이벤트로 발행하여 레거시+MSA 통합으로 사용, CQRS 읽기 모델 동기화용으로 사용.
 ![image](https://user-images.githubusercontent.com/35188271/212799342-0bbdc51b-67c6-40f5-b344-ff225745f7c1.png)
 
 
@@ -81,4 +82,25 @@ Binder = ORM Mapper
 ![image](https://user-images.githubusercontent.com/35188271/212817142-f4558abf-66b6-4c34-8cda-ae87479d11b8.png)
 
 - `PATCH` : 부분 수정(qty만 보내면 qty만 수정됨)
-- `PUT` : 전체 수정(qty만 보내면 나머지는 지워지고 qty만 update됨)
+- `PUT` : 전체 수정(qty만 보내면 나머지는 지워지고 qty만 update됨
+
+
+
+# 3일차
+
+- `리밸런싱` : Partition과 MicroService간의 오케스트레이션 처리.
+
+
+메세지 순서성에 대한 실습
+
+- 장애전파 차단 : 서킷브레이커 패턴(요청측에서 차단기를 넣고, 특정 요청시간이 넘어서면 끊어버림)
+![image](https://user-images.githubusercontent.com/35188271/213056072-6162f8c8-0018-4d61-bee3-bf62a116f2c8.png)
+
+- FallBack : 서킷브레이커 동작 또는 응답이 없을때 다른주소(오류 알림)를 보여주거나 우회 처리.  
+
+ 
+ ![image](https://user-images.githubusercontent.com/35188271/213058788-d5109fcc-e07d-4e8c-a4e6-cc47880e324a.png)
+ 
+ 
+ 
+
